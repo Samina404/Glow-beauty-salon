@@ -139,14 +139,16 @@ $(document).ready(function() {
                 const delay = parseFloat(el.dataset.animDelay || el.dataset.animdelay || 0);
                 setTimeout(() => {
                     el.classList.add('in-view');
+                    el.classList.add('animate__animated');
                 }, delay * 1000);
             } else {
                 el.classList.remove('in-view');
+                el.classList.remove('animate__animated');
             }
         });
     }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('[data-anim]').forEach(el => {
+    document.querySelectorAll('[data-anim], .scroll-animate').forEach(el => {
         animObserver.observe(el);
     });
 
