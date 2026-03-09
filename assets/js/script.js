@@ -171,21 +171,20 @@ $(document).ready(function() {
 
         function getTrackOffset(index) {
             const activeCard = cards.get(index);
-            const firstCard = cards.get(0);
-            if (!activeCard || !firstCard) {
+            if (!activeCard) {
                 return 0;
             }
 
             const viewportWidth = testimonialViewport.innerWidth();
-            const trackWidth = testimonialTrack.outerWidth();
-            if (trackWidth <= viewportWidth) {
-                return 0;
-            }
-
-            const rawOffset = -activeCard.offsetLeft + firstCard.offsetLeft;
+            const trackWidth = testimonialTrack[0].scrollWidth;
+            
+            // Calculate offset to center the specific card
+            let targetOffset = (viewportWidth / 2) - (activeCard.offsetLeft + (activeCard.offsetWidth / 2));
+            
+            // Constrain within track bounds
             const minOffset = viewportWidth - trackWidth;
-
-            return Math.max(minOffset, Math.min(0, rawOffset));
+            
+            return Math.max(minOffset, Math.min(0, targetOffset));
         }
 
         function updateCarousel(animate = true) {
@@ -247,6 +246,32 @@ $(document).ready(function() {
         $(window).on('resize', function() {
             updateCarousel(false);
         });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        testimonialContainer.on('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        testimonialContainer.on('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            if (touchEndX < touchStartX - swipeThreshold) {
+                // Swipe Left -> Next
+                goToSlide(currentSlide + 1);
+                resetAutoPlay();
+            } else if (touchEndX > touchStartX + swipeThreshold) {
+                // Swipe Right -> Prev
+                goToSlide(currentSlide - 1);
+                resetAutoPlay();
+            }
+        }
 
         updateCarousel(false);
         startAutoPlay();

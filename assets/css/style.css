@@ -211,6 +211,34 @@ h6 {
     transform: rotate(-45deg);
 }
 
+@media (max-width: 991px) {
+    .navbar {
+        background: rgba(253, 114, 141, 0.95);
+        padding: 10px 0;
+    }
+
+    .navbar-collapse {
+        background: transparent;
+        margin-top: 15px;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link {
+        font-size: 1.2rem;
+        padding: 12px 0 !important;
+        text-align: center;
+        border-bottom: px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-book-now {
+        margin: 15px auto 0;
+        display: block;
+        width: 200px;
+        text-align: center;
+    }
+}
+
 .nav-link {
     font-size: 1.5rem;
     font-weight: 500;
@@ -329,6 +357,23 @@ h6 {
     box-shadow: 0 5px 15px rgba(244, 114, 182, 0.3);
 }
 
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.2rem;
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 15px;
+    }
+
+    .btn-hero {
+        font-size: 1.1rem;
+        padding: 10px 25px;
+    }
+}
+
 /* Features Section */
 .features-section {
     --section-glow-a: rgba(255, 255, 255, 0.34);
@@ -425,14 +470,22 @@ h6 {
 
 @media (max-width: 991px) {
     .custom-services-row {
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding: 20px 15px 60px;
     }
 
     .bridal-card,
     .party-card,
     .hair-card {
-        margin-top: 20px;
+        margin-top: 0 !important;
         width: 100%;
+        max-width: 400px;
+    }
+
+    .custom-card-style {
+        transform: translateY(50px);
     }
 }
 
@@ -649,6 +702,31 @@ h6 {
     }
 }
 
+@media (max-width: 768px) {
+    .scroll-animate {
+        transform: translateY(30px);
+    }
+
+    .h6,
+    .c1,
+    .c2,
+    .c3 {
+        display: none;
+    }
+
+    .h1 {
+        width: 100px;
+        top: -10px;
+        left: -10px;
+    }
+
+    .h4 {
+        width: 120px;
+        top: -20px;
+        right: -20px;
+    }
+}
+
 /* Testimonials Sector */
 .testimonials-section {
     --section-glow-a: rgba(255, 255, 255, 0.24);
@@ -693,7 +771,7 @@ h6 {
     align-items: center;
     flex-wrap: nowrap;
     gap: 32px;
-    padding: 0 100px 0 0;
+    padding: 0;
     width: max-content;
     will-change: transform;
 }
@@ -708,8 +786,26 @@ h6 {
     box-shadow: 0 15px 35px rgba(244, 114, 182, 0.12);
     opacity: 0.24;
     transform: translateY(0) scale(0.98);
-    transition: all 0.45s ease;
+    transition: all 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+@media (max-width: 576px) {
+    .testi-card {
+        width: calc(100vw - 40px);
+        min-width: calc(100vw - 40px);
+        margin: 0;
+        padding: 20px;
+    }
+
+    .testi-carousel {
+        padding: 0;
+        gap: 15px;
+    }
+
+    .testi-carousel-viewport {
+        padding: 15px 10px;
+    }
 }
 
 .testi-card.active-card {
@@ -946,27 +1042,26 @@ h6 {
     box-shadow: 0 4px 12px rgba(228, 93, 140, 0.3);
 }
 
-/* Opposite Fade In Animation */
-body.motion-ready .contact-section .contact-panel {
-    opacity: 0;
-    transition: opacity 0.8s ease-out, transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+/* Contact Panel Animations */
+.contact-panel-left.scroll-animate {
+    transform: translateX(-60px);
 }
 
-body.motion-ready .contact-section .contact-panel-left {
-    /* Coming inside inwards from left */
-    transform: translate3d(-100px, 0, 0);
-    transition-delay: 0.1s;
+.contact-panel-right.scroll-animate {
+    transform: translateX(60px);
 }
 
-body.motion-ready .contact-section .contact-panel-right {
-    /* Coming inside inwards from right */
-    transform: translate3d(100px, 0, 0);
-    transition-delay: 0.2s;
+.contact-panel-left.scroll-animate.in-view,
+.contact-panel-right.scroll-animate.in-view {
+    transform: translate(0);
 }
 
-body.motion-ready .contact-section.section-visible .contact-panel {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
+@media (max-width: 991px) {
+
+    .contact-panel-left.scroll-animate,
+    .contact-panel-right.scroll-animate {
+        transform: translateY(40px);
+    }
 }
 
 /* FooterStyles */
@@ -1115,55 +1210,130 @@ footer a:hover {
     font-size: 0.70rem;
     font-weight: 600;
     letter-spacing: 0.2px;
-    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .footer-bottom-bar {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .footer-bottom-bar p {
+        white-space: normal;
+        padding: 0 10px;
+    }
+
+    .footer-bottom-bar hr {
+        display: none;
+    }
+}
+
+@media (max-width: 991px) {
+    .contact-info {
+        padding: 40px 0 20px;
+        text-align: center;
+    }
+
+    .contact-heading {
+        font-size: 3rem;
+    }
+
+    .contact-description {
+        margin: 0 auto 30px;
+        max-width: 100%;
+    }
+
+    .contact-details {
+        text-align: center;
+    }
+
+    .contact-social-links {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        padding: 0;
+    }
+
+    .contact-form-container {
+        padding: 20px 0;
+    }
 }
 
 @media (max-width: 768px) {
     .navbar-collapse {
-        background: rgba(255, 255, 255, 0.9);
         padding: 20px;
-        border-radius: 10px;
         margin-top: 12px;
     }
 
     .nav-link {
-        color: var(--dark-navy) !important;
+        color: #fff !important;
+        text-align: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .btn-book-now {
-        margin-top: 12px;
+        margin-top: 20px;
         width: 100%;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
     }
 
     .testimonials-section {
-        padding: 80px 0 50px;
+        padding: 60px 0 40px;
     }
 
     .section-title,
     .testi-title {
-        font-size: 3rem;
+        font-size: 2.2rem;
     }
 
     .testi-subtitle {
-        margin-bottom: 36px;
+        margin-bottom: 24px;
     }
 
     .testi-card {
-        padding: 24px;
+        padding: 15px;
     }
 
     .testi-controls {
-        gap: 14px;
-        margin-top: 20px;
-        padding: 0;
+        gap: 10px;
+        margin-top: 25px;
+        padding: 0 15px;
     }
 
     .testi-line {
-        width: 28px;
+        width: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-heading {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+    }
+
+    .contact-label {
+        font-size: 1.25rem;
+    }
+
+    .contact-info {
+        padding: 10px 0;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+    }
+
+    .f-heart {
+        width: 60px;
     }
 }
 
